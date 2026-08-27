@@ -1,0 +1,4 @@
+interface:
+  display_name: "Repo Structure Audit"
+  short_description: "Audit repo structure and plan safe cleanup"
+  default_prompt: "Use $repo-structure-audit to audit this repository and produce an evidence-backed cleanup report."
