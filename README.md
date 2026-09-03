@@ -1,38 +1,68 @@
-# woekel-works
+<div align="center">
 
-Claude Code skills, agents, and automations I build and use to eliminate manual
-ops work — the kind that eats hours, causes errors, and doesn't scale.
+# woekel works
 
-I'm Kierra Woekel. My background is marketing and operations — strategic
-partnerships, community engagement, and ops — and I use that lens to design
-automation that solves real business problems. Everything here is something I
-actually run.
+**Less manual checking. Fewer loose ends. More room for the work that matters.**
 
-## What's inside
+Reusable Claude Code and Codex skills I build and run to make operations feel
+lighter and reduce the need to remember every next step.
 
-| Folder | What it is |
-|---|---|
-| `skills/` | Claude Code skills — drop-in capabilities you can install and use |
+[![MIT License](https://img.shields.io/badge/license-MIT-111111.svg)](LICENSE)
+[![Python 3](https://img.shields.io/badge/Python-3-3776AB.svg)](https://www.python.org/)
+[![Tests](https://img.shields.io/badge/tests-21%20passing-2E7D32.svg)](skills/repo-structure-audit/tests/)
 
-### Skills
+</div>
 
-| Skill | What it does |
-|---|---|
-| [`repo-structure-audit`](skills/repo-structure-audit/) | Audits a repository's organization and produces an evidence-backed cleanup plan — navigation, ownership, duplication, archives, generated files, config, and Git hygiene. |
+## Start here
 
-## Using a skill
+| Tool | Use it when | What you get |
+| --- | --- | --- |
+| [**Repo Structure Audit**](skills/repo-structure-audit/) | A repository feels hard to navigate, duplicated, or risky to reorganize | An evidence-backed audit and, when requested, a reference-safe cleanup plan |
 
-Copy the skill folder into `~/.claude/skills/` and Claude Code picks it up
-automatically:
+The audit is read-only. It examines navigation, ownership, lifecycle, generated
+files, configuration, and Git hygiene without moving or deleting the repository
+it reviews.
+
+## How it works
+
+```mermaid
+flowchart LR
+    A[Your repository] --> B[Read-only scan]
+    B --> C[Evidence review]
+    C --> D[Scored audit]
+    D --> E[Cleanup plan<br/>when requested]
+```
+
+The scanner collects facts. The skill checks those facts against the repository's
+actual purpose and rules before it makes a recommendation.
+
+## Install
+
+Clone this repository, then copy the skill into the tool you use:
 
 ```bash
 git clone https://github.com/kwoekel/woekel-works.git
+
+# Claude Code
 cp -R woekel-works/skills/repo-structure-audit ~/.claude/skills/
+
+# Codex
+cp -R woekel-works/skills/repo-structure-audit ~/.codex/skills/
 ```
 
-Each skill has its own README with what it does, when it fires, and anything it
-needs installed.
+Python 3 and Git are the only requirements. The scanner uses the Python standard
+library; no package install is needed.
+
+## Why I built it
+
+Good operations should make work easier to carry, not add another system to
+remember. I build these tools for my own operating system first, then share the
+parts that can help someone else work with less friction.
+
+I'm Kierra Woekel. I bring 10+ years across marketing operations, strategic
+partnerships, and community engagement to AI systems built for real business
+operations.
 
 ## License
 
-MIT — use it, change it, ship it.
+MIT — use it, adapt it, and ship what helps.
