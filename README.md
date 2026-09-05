@@ -15,7 +15,7 @@ lighter and reduce the need to remember every next step.
 
 ## Start here
 
-One skill so far: [**Repo Structure Audit**](skills/repo-structure-audit/). Use it
+[**Repo Structure Audit**](skills/repo-structure-audit/). Use it
 when a repository feels hard to navigate, full of duplicates, or risky to reorganize.
 It reads your repo, scores it against ten principles, and proposes the safest
 cleanup. It never moves or deletes anything.
