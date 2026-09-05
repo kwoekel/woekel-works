@@ -11,12 +11,13 @@ breaking live references. Treat scanner results as evidence, not conclusions.
 
 ## Guiding convention
 
-**Every subject in the ownership map has exactly one owner; routers hold zero facts.**
+**Every subject in the ownership map has exactly one owner; agent routers hold zero facts.**
 
 A subject is any fact, rule, or implementation. An owner is the single file that states it. A
-router is any file whose job is to point — index, map, entry point, routing table. Two owners
-for one subject is a P5 finding; a router that states a fact instead of pointing to its owner
-is a P3 finding. Apply this before recommending any consolidation or move.
+router is an agent-facing file whose job is to point, primarily `AGENTS.md` or `CLAUDE.md`.
+`README.md` is human-facing orientation, never a router or canonical owner. Two owners
+for one subject is a P5 finding; an agent router that states a fact instead of pointing to
+its owner is a P3 finding. Apply this before recommending any consolidation or move.
 
 ## Route the request
 
@@ -152,7 +153,18 @@ reference check, and risk if wrong. Rank actions by leverage and reversibility, 
 Do not prescribe a specific folder name such as `tmp/`, an environment-file convention, or
 workspace tooling when the repository's stated policy or ecosystem uses another pattern.
 
-Present the headline, score or score range, verdict table, two or three highest-cost findings,
+Use exactly three top-level report sections:
+
+1. **What: Current State** — profile, scope, score, the seriousness table, and strengths.
+2. **So What: What This Affects** — two to four concrete consequences, followed by compact
+   evidence blocks. Use Current / Impact / Proposal / Safety once per finding.
+3. **Now What: Proposed Changes** — label all recommendations **Proposed — not reviewed**,
+   show Current and After Proposed Changes as side-by-side annotated trees, rank changes, and
+   record owner decisions and coverage limits.
+
+Keep each finding field to one or two sentences unless a repository-specific risk requires
+more. Do not repeat evidence across the headline, consequences, and finding blocks. Present
+the headline, score or score range, seriousness table, two or three highest-cost findings,
 pending owner decisions, coverage limits, and report path. Stop after Phase 1 unless the user
 already requested an exact plan and no owner decisions remain.
 

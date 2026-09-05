@@ -1,30 +1,30 @@
-# Structure Audit — {repo name} — {YYYY-MM-DD}
+# Repo Structure Audit — {repo name} — {YYYY-MM-DD}
+
+{One sentence: overall state, highest-cost problem, and safest first move.}
 
 {No pending checks: **{n}/100 — {band}.**
 Pending checks: **Assessed: {earned}/{available} points ({percent}%). Full-score range:
 {minimum}–{maximum}/100 pending {checks}.** Never show an ordinary `{n}/100` headline while
 pending.}
 
-Read as: {profile}. {N/A checks and reason.}
+## What: Current State
 
-{Scope, supplied purpose, governing conventions, and assumptions.}
+- **Profile:** {profile and evidence}.
+- **Scope:** {target, supplied purpose, governing conventions, and assumptions}.
+- **N/A:** {checks and reason, or “None”}.
 
-{If a prior audit exists:}
+| Lens | Score |
+|---|---:|
+| Navigability | {earned}/{available} |
+| Ownership | {earned}/{available} |
+| Lifecycle | {earned}/{available} |
+| Hygiene | {earned}/{available} |
 
-## Since last audit
+### Seriousness by principle
 
-{Repository changes versus rubric/scoring changes. Generated reports are excluded from facts.}
-
-Navigability  {earned}/{available}
-Ownership     {earned}/{available}
-Lifecycle     {earned}/{available}
-Hygiene       {earned}/{available}
-
-## Verdicts
-
-| Principle | Verdict | Worst evidence |
+| Principle | Seriousness | Strongest evidence |
 |---|---|---|
-| P1 Obvious entry point | 🟢/🟡/🔴/⚪/⏳ | … |
+| P1 Obvious entry point | 🟢 Clear / 🟡 Watch / 🔴 Fix / ⚪ N/A / ⏳ Needs your call | … |
 | P2 Consistent naming | … | … |
 | P3 Smallest complete owner | … | … |
 | P4 Project-folder threshold | … | … |
@@ -35,51 +35,88 @@ Hygiene       {earned}/{available}
 | P9 Configuration discipline | … | … |
 | P10 Git hygiene | … | … |
 
-## What this costs today
-
-{Two to four concrete consequences. Say plainly when nothing is currently costly.}
-
-## What works
+### What works
 
 {One to three specific strengths worth preserving.}
 
-## Structure now → recommended
+{If a prior audit exists:}
 
-{A compact annotated tree showing only affected areas and enough context to orient. Do not
-include changes that depend on unanswered intent.}
+### Since last audit
 
-## Findings
+{Repository changes versus rubric or scoring changes. Generated reports are excluded from
+facts.}
 
-### F{n} · {title}
+## So What: What This Affects
 
-**Principle** — {P# Name and short rule.}
+{List only the two to four highest-cost consequences, most serious first. Name what may break,
+duplicate, become misleading, or get lost. Say plainly when nothing is currently costly.}
 
-**Why it matters** — {Observable consequence, not a restatement.}
+### Evidence behind the findings
 
-**In this repo** — {Paths and evidence. Never quote secret values.}
+#### F{n} · {title} — {🟡 Watch / 🔴 Fix / ⏳ Needs your call}
 
-**Recommendation** — {Desired outcome; preserve documented repository constraints.}
+**Current** — {P# Name. Repository paths and evidence. Never quote secret values.}
 
-**References checked** — {Exact searches and results.}
+**Impact** — {Observable consequence in one or two sentences; do not restate the principle.}
 
-**Risk if wrong** — {Failure mode or “none found.”}
+**Proposal** — {Desired outcome; preserve documented repository constraints.}
 
-## Needs your call
+**Safety** — {Exact reference searches and results. State the risk if wrong, or “None found.”}
+
+{Repeat only for findings that affect the score, require a decision, or support a proposed
+change. Do not repeat the same evidence in multiple findings.}
+
+## Now What: Proposed Changes
+
+> **Proposed — not reviewed.** This audit recommends changes; it does not approve or
+> implement them.
+
+### Before and After Proposed Changes
+
+{Show only affected areas and enough context to orient. Keep annotations short enough for two
+columns. Do not include changes that depend on unanswered intent.}
+
+<table>
+<tr>
+<th>Current</th>
+<th>After Proposed Changes</th>
+</tr>
+<tr>
+<td><pre>
+{affected current tree
+with [KEEP], [FIX], [DUPLICATE],
+[AUTHORED], or [GENERATED] notes}
+</pre></td>
+<td><pre>
+{affected proposed tree
+with [OWNER], [ROUTER], [HUMAN],
+[MOVE], or [KEEP] notes}
+</pre></td>
+</tr>
+</table>
+
+**Tree key:** `OWNER` canonical home · `ROUTER` `AGENTS.md` or `CLAUDE.md`, pointers only ·
+`HUMAN` explanatory `README.md` · `MOVE` reference check required · `KEEP` no change
+
+### Ranked changes
+
+| Order | Proposed change | Why this order | Safety check |
+|---:|---|---|---|
+| 1 | … | … | … |
+
+{Rank by leverage and reversibility. Reference checks precede dependent moves.}
+
+### Needs your call
 
 {Only questions where intent decides whether a finding exists. Never ask which duplicate is
-canonical here; uncontrolled duplication is already scored. Put naming and implementation
-choices under “Decisions for the plan.” Maximum three questions.}
+canonical here; uncontrolled duplication is already scored. Maximum three questions.}
 
-## Decisions for the plan
+### Choices for an implementation plan
 
-{Implementation choices that do not change the audit score, such as which duplicate becomes
-canonical or whether independently owned projects should adopt workspace tooling.}
+{Choices that do not change the audit score, such as which duplicate becomes canonical. Do
+not imply that an audit recommendation is approved.}
 
-## Ranked next actions
-
-{Highest leverage and safest first. Reference checks precede dependent moves.}
-
-## Coverage and security limits
+### Coverage and security limits
 
 - {Unreadable, depth-pruned, opaque, or sampled paths.}
 - {Whether a dedicated secret-content scan ran. Filename checks alone do not prove absence.}

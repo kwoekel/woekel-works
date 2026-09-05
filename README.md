@@ -15,13 +15,46 @@ lighter and reduce the need to remember every next step.
 
 ## Start here
 
-| Tool | Use it when | What you get |
-| --- | --- | --- |
-| [**Repo Structure Audit**](skills/repo-structure-audit/) | A repository feels hard to navigate, duplicated, or risky to reorganize | An evidence-backed audit and, when requested, a reference-safe cleanup plan |
+One skill so far: [**Repo Structure Audit**](skills/repo-structure-audit/). Use it
+when a repository feels hard to navigate, full of duplicates, or risky to reorganize.
+It reads your repo, scores it against ten principles, and proposes the safest
+cleanup. It never moves or deletes anything.
 
-The audit is read-only. It examines navigation, ownership, lifecycle, generated
-files, configuration, and Git hygiene without moving or deleting the repository
-it reviews.
+To get value from the audit, you need its way of thinking. Here is the whole model in
+four ideas.
+
+### 1. Every fact has exactly one home
+
+A fact is anything that can be true or false: a rule, a setting, a status, a decision.
+It lives in one file. Every other file links there instead of repeating it. If you
+must edit two files to keep one statement true, that statement has two homes, and one
+of them is already drifting.
+
+### 2. Files have jobs, not just types
+
+| Kind | Job | Holds facts? | Examples |
+|---|---|---|---|
+| **Owner** | States a fact and keeps it correct | Yes | `STATUS.md`, `config.json`, code |
+| **Router** | Points an agent to the right owner | No, only paths | `AGENTS.md`, `CLAUDE.md` |
+| **Orientation** | Explains the repo to a person | Summary only | `README.md` |
+
+Routers hold zero facts. A README is never a router and never the source of truth.
+
+### 3. Ask five questions before placing anything
+
+Who owns it? What job does it do? Who reads it? What authority does it have? What
+lifecycle is it in? The answers decide the folder. The root is a map, not a drawer.
+
+### 4. Active, generated, historical, and disposable must look different
+
+If a machine can rebuild it, ignore it or mark it. If it was replaced, say so and keep
+it findable. If it stopped being maintained, say that too. Cleanup should never be a
+guess.
+
+The audit turns these four ideas into ten scored principles, grouped as Navigability,
+Ownership, Lifecycle, and Hygiene. The full lesson, the principle table, and what the
+report looks like are in the
+[skill README](skills/repo-structure-audit/README.md).
 
 ## How it works
 
@@ -33,8 +66,9 @@ flowchart LR
     D --> E[Cleanup plan<br/>when requested]
 ```
 
-The scanner collects facts. The skill checks those facts against the repository's
-actual purpose and rules before it makes a recommendation.
+The scanner collects facts. The skill checks those facts against your repo's actual
+purpose and conventions before it recommends anything. A notes-only repo is never
+told to add `src/` and `tests/`.
 
 ## Install
 
@@ -49,6 +83,8 @@ cp -R woekel-works/skills/repo-structure-audit ~/.claude/skills/
 # Codex
 cp -R woekel-works/skills/repo-structure-audit ~/.codex/skills/
 ```
+
+Then ask in plain words: "Audit this repository's structure."
 
 Python 3 and Git are the only requirements. The scanner uses the Python standard
 library; no package install is needed.

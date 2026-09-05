@@ -2,8 +2,10 @@
 
 Use principles as the reason for findings; treat implementations as ecosystem-dependent.
 
-**Guiding convention:** every subject in the ownership map has exactly one owner; routers hold zero facts.
-P3 places the owner, P5 keeps it singular, and P1 keeps routers pointing rather
+**Guiding convention:** every subject in the ownership map has exactly one owner; agent
+routers hold zero facts. `AGENTS.md` and `CLAUDE.md` are the primary agent routers.
+`README.md` explains the repository to people; it is never a router or canonical
+owner. P3 places the owner, P5 keeps it singular, and P1 keeps agent routers pointing rather
 than asserting.
 
 ## Contents
@@ -27,7 +29,8 @@ audience, authority, and lifecycle—not by file type or whether a human or AI c
 
 ```text
 repository
-├── entry points       what is this and where do I begin?
+├── human orientation what is this? (`README.md` when needed)
+├── agent routes      where are governing sources? (`AGENTS.md`, `CLAUDE.md`)
 ├── active work        what does it produce or operate?
 ├── configuration      what controls behavior?
 ├── documentation      what must people understand?
@@ -37,17 +40,18 @@ repository
 
 ## P1 · Obvious entry point
 
-**Rule:** A cold reader can identify the repository and reach active work without searching.
+**Rule:** A cold human can understand the repository, and an agent can reach governing
+sources and active work, without searching.
 
 Evidence of failure:
 
-- No meaningful root entry point.
-- A route names missing paths or omits obviously active owners.
+- No meaningful human orientation where the repository needs one.
+- `AGENTS.md` or `CLAUDE.md` names missing paths or omits obviously active owners.
 - In a multi-project repository, sampled projects have no local orientation.
 - Three plausible artifacts cannot be reached through names alone—the clickable-tree test.
 
-Do not require a README for a single self-explanatory file or a package routed by a clear
-parent index. A confident wrong route costs more than a missing route.
+Do not require a README for a single self-explanatory file or a package already explained by
+its parent documentation. A confident wrong agent route costs more than a missing route.
 
 ## P2 · Consistent naming
 
@@ -72,8 +76,10 @@ unrelated ecosystems.
 Loose root files, buried global rules, and “shared” areas used by one project are leads. The
 root should act as a map, not satisfy an arbitrary item limit.
 
-A router that states a fact instead of pointing to its owner is a P3 finding: the fact now has
-two homes and drifts silently. Score it here, not twice under P5.
+An agent router that states a fact instead of pointing to its owner is a P3 finding: the fact
+now has two homes and drifts silently. Score it here, not twice under P5. A README that
+duplicates canonical detail is also misplaced, but remains human documentation rather than
+becoming a router.
 
 ## P4 · Project-folder threshold
 
