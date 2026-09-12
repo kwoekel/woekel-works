@@ -15,6 +15,8 @@ class TemplateParser(HTMLParser):
         super().__init__()
         self.section_ids = []
         self.scripts = 0
+        self.details = 0
+        self.summaries = 0
 
     def handle_starttag(self, tag, attrs):
         attributes = dict(attrs)
@@ -22,6 +24,10 @@ class TemplateParser(HTMLParser):
             self.section_ids.append(attributes.get("id"))
         if tag == "script":
             self.scripts += 1
+        if tag == "details":
+            self.details += 1
+        if tag == "summary":
+            self.summaries += 1
 
 
 class ReportTemplateTests(unittest.TestCase):
@@ -56,6 +62,20 @@ class ReportTemplateTests(unittest.TestCase):
         self.assertIn("Proposed — not reviewed", self.source)
         self.assertIn("Coverage and security limits", self.source)
         self.assertIn("Never quote secret values", self.source)
+
+    def test_educational_toggles_cover_the_method_and_safety(self):
+        self.assertEqual(self.parser.details, 15)
+        self.assertEqual(self.parser.summaries, self.parser.details)
+        for label in (
+            "How this score works",
+            "What the seriousness labels mean",
+            "P1 · Obvious entry point",
+            "P10 · Git hygiene",
+            "Show reference checks and risk",
+            "Why the audit stops at a proposal",
+            "How to read the tree labels",
+        ):
+            self.assertIn(label, self.source)
 
     def test_template_supports_narrow_and_print_layouts(self):
         self.assertIn("min-width: 0", self.source)

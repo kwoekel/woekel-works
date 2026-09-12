@@ -152,6 +152,11 @@ target HTML into the report, even when it appears to be harmless evidence. Remov
 template alternatives and comments before delivery, then open the finished file and verify
 the desktop and narrow layouts render correctly.
 
+Keep the template's plain-language teaching and native `details`/`summary` toggles. Explain
+how the score works, what each principle tests, how reference checks protect a change, and
+why recommendations still need review. The report must remain understandable with every
+toggle closed; disclosures add context instead of hiding the result or required decisions.
+
 If an earlier audit exists, compare the newest one and distinguish repository changes from
 rubric changes. Never let earlier reports count as live references or duplicate content.
 
