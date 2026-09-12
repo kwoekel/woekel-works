@@ -140,10 +140,17 @@ step. Do not recommend a move without recording the check performed.
 
 ### 6. Write the audit
 
-Use [assets/structure-audit.template.md](assets/structure-audit.template.md). Place a
-whole-repo audit in root `audits/` and a scoped audit in that area's `audits/`, unless a
-governing repository rule names another owner. If writing there would violate a repository
-rule or the user requested no writes, present the report in chat instead.
+Use [assets/structure-audit.template.html](assets/structure-audit.template.html) and write a
+standalone `STRUCTURE-AUDIT-{YYYY-MM-DD}.html`. Place a whole-repo audit in root `audits/`
+and a scoped audit in that area's `audits/`, unless a governing repository rule names another
+owner. If writing there would violate a repository rule or the user requested no writes,
+present the report in chat instead.
+
+Keep the report portable: use the template's embedded CSS, no JavaScript, no remote assets,
+and no forms. HTML-escape every repository-derived value before inserting it. Never copy raw
+target HTML into the report, even when it appears to be harmless evidence. Remove unused
+template alternatives and comments before delivery, then open the finished file and verify
+the desktop and narrow layouts render correctly.
 
 If an earlier audit exists, compare the newest one and distinguish repository changes from
 rubric changes. Never let earlier reports count as live references or duplicate content.

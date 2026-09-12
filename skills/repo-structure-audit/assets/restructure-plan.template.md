@@ -1,7 +1,7 @@
 # {repo name} restructure plan — {YYYY-MM-DD}
 
 **Status:** {ready / blocked by decisions}
-**Companion:** `STRUCTURE-AUDIT-{YYYY-MM-DD}.md`
+**Companion:** `STRUCTURE-AUDIT-{YYYY-MM-DD}.html`
 **Scope:** {whole repository / named area}
 **Score:** {n}/100 ({band}){ or assessed range while checks remain pending}
 **Coverage:** {n} approved · {n} declined · {n} deferred

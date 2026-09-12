@@ -157,7 +157,7 @@ SCRATCH_HINT = re.compile(r"^(_?tmp|_?temp|scratch(pad)?|junk|misc|untitled|new 
                           r"stuff|foo|bar|delete[-_]?me|wip)\d*([-_ .].*)?$", re.I)
 AUDIT_HINT = re.compile(r"^(audits?|reports?|reviews?|assessments?)$", re.I)
 GENERATED_REPORT = re.compile(
-    r"^(STRUCTURE-AUDIT|RESTRUCTURE-PLAN)-\d{4}-\d{2}-\d{2}(?:-\d+)?\.md$",
+    r"^(STRUCTURE-AUDIT|RESTRUCTURE-PLAN)-\d{4}-\d{2}-\d{2}(?:-\d+)?\.(?:md|html)$",
     re.I,
 )
 AMBIGUOUS_ARTIFACT_DIRS = {"vendor", "env", "out", "build", "target"}

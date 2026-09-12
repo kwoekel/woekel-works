@@ -133,12 +133,16 @@ class ScanStructureTests(unittest.TestCase):
             "audits/STRUCTURE-AUDIT-2026-08-15.md",
             "credential-secret duplicate duplicate obsolete\n",
         )
+        self.write(
+            "audits/STRUCTURE-AUDIT-2026-08-16.html",
+            "<p>credential-secret duplicate duplicate obsolete</p>\n",
+        )
 
         report = self.scan_json()
 
         self.assertEqual(report["totals"]["files"], 1)
         self.assertNotIn("audits", report["lifecycle"]["empty_dirs"])
-        self.assertEqual(report["coverage_gaps"]["generated_reports_excluded"], 1)
+        self.assertEqual(report["coverage_gaps"]["generated_reports_excluded"], 2)
 
     def test_prohibited_paths_are_separate_from_missing_references(self):
         self.write("README.md", "Never create `tmp/` in this repository.\n")

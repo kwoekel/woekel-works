@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Repo Structure Audit — {repo name} — {YYYY-MM-DD}</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17211b;
+      --muted: #59645e;
+      --paper: #f6f4ee;
+      --panel: #ffffff;
+      --line: #d7ddd8;
+      --green: #195b42;
+      --green-soft: #e7f2ec;
+      --amber: #7a4300;
+      --amber-soft: #fff1dc;
+      --red: #8a2f2b;
+      --red-soft: #fbe9e7;
+      --blue: #164f75;
+      --blue-soft: #e8f2f8;
+      --gray-soft: #eef0ee;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.55 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    header,
+    main,
+    footer {
+      width: min(1040px, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    header { padding: 3.5rem 0 1.5rem; }
+    main { display: grid; gap: 1rem; }
+    footer { padding: 1rem 0 3rem; color: var(--muted); font-size: .85rem; }
+
+    h1 {
+      max-width: 15ch;
+      margin: .2rem 0 .8rem;
+      font-size: clamp(2.25rem, 6vw, 4.8rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+
+    h2 { margin: 0 0 .4rem; font-size: clamp(1.55rem, 3vw, 2.25rem); }
+    h3 { margin: .1rem 0 .45rem; line-height: 1.25; }
+    p { margin: .4rem 0; }
+
+    section {
+      min-width: 0;
+      padding: clamp(1.15rem, 3vw, 2rem);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .lede { max-width: 68ch; color: var(--muted); font-size: 1.1rem; }
+
+    .badge {
+      display: inline-block;
+      padding: .35rem .65rem;
+      border-radius: 999px;
+      color: var(--green);
+      background: var(--green-soft);
+      font-weight: 750;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+      gap: 1rem;
+      align-items: end;
+      margin-top: 1.4rem;
+    }
+
+    .score {
+      padding: 1.25rem;
+      color: white;
+      background: var(--green);
+      border-radius: 14px;
+    }
+
+    .score strong { display: block; font-size: clamp(2.2rem, 7vw, 4rem); line-height: 1; }
+    .score span { display: block; margin-top: .35rem; color: #e4f0e9; }
+
+    .meta,
+    .lens-grid,
+    .strength-grid,
+    .tree-grid {
+      display: grid;
+      gap: .75rem;
+      margin-top: 1rem;
+    }
+
+    .meta { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .lens-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .strength-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .tree-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .meta div,
+    .lens,
+    .strength,
+    .tree {
+      padding: 1rem;
+      background: #f8faf8;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+    }
+
+    .meta strong,
+    .lens strong { display: block; color: var(--green); }
+    .lens strong { font-size: 1.65rem; }
+
+    .table-wrap { margin-top: 1rem; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: .8rem; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-size: .85rem; }
+
+    .status {
+      display: inline-block;
+      min-width: 5.5rem;
+      padding: .25rem .55rem;
+      border-radius: 999px;
+      font-size: .84rem;
+      font-weight: 750;
+      text-align: center;
+    }
+
+    .clear { color: var(--green); background: var(--green-soft); }
+    .watch { color: var(--amber); background: var(--amber-soft); }
+    .fix { color: var(--red); background: var(--red-soft); }
+    .pending { color: var(--blue); background: var(--blue-soft); }
+    .na { color: var(--muted); background: var(--gray-soft); }
+
+    .consequences { display: grid; gap: .65rem; margin: 1rem 0 1.5rem; padding: 0; list-style: none; }
+    .consequences li { padding: .85rem 1rem; border-left: 5px solid var(--amber); background: var(--amber-soft); }
+
+    .finding { padding: 1.2rem 0; border-top: 1px solid var(--line); }
+    .finding:first-of-type { border-top: 0; }
+
+    .finding-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .65rem;
+      margin-top: .8rem;
+    }
+
+    .finding-grid div { padding: .9rem; border-radius: 10px; background: #f8faf8; }
+    .finding-grid strong { display: block; margin-bottom: .25rem; color: var(--green); }
+
+    .notice {
+      margin: 1rem 0;
+      padding: 1rem;
+      border-left: 6px solid var(--green);
+      background: var(--green-soft);
+      font-size: 1.05rem;
+    }
+
+    .tree pre {
+      margin: .75rem 0 0;
+      overflow-x: auto;
+      color: var(--ink);
+      font: .88rem/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre;
+    }
+
+    .callout { margin-top: 1rem; padding: 1rem; border-radius: 11px; background: var(--blue-soft); }
+    .limits { color: var(--muted); }
+
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+    @media (max-width: 760px) {
+      header { padding-top: 2.25rem; }
+      .hero-grid,
+      .meta,
+      .lens-grid,
+      .strength-grid,
+      .tree-grid,
+      .finding-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: white; }
+      header, main, footer { width: 100%; }
+      section { break-inside: avoid; border-color: #bbb; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Repo Structure Audit</p>
+    <h1>{repo name}</h1>
+    <p class="badge">Read-only review — nothing changed</p>
+    <p class="lede">{One sentence: overall state, highest-cost problem, and safest first move.}</p>
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Audit result</p>
+        <p>{No pending checks: final score and band. Pending checks: assessed points, assessed percent, full-score range, and named pending checks. Never show an ordinary score out of 100 while checks remain pending.}</p>
+      </div>
+      <div class="score">
+        <strong>{score or assessed percent}</strong>
+        <span>{band or full-score range}</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="what-current-state">
+      <h2>What: Current State</h2>
+      <p class="lede">{Plain-language summary of what the audit could establish.}</p>
+
+      <div class="meta">
+        <div><strong>Profile</strong>{profile and evidence}</div>
+        <div><strong>Scope</strong>{target, purpose, governing conventions, and assumptions}</div>
+        <div><strong>N/A</strong>{checks and reason, or None}</div>
+      </div>
+
+      <div class="lens-grid" aria-label="Score by lens">
+        <div class="lens"><strong>{earned}/{available}</strong>Navigability</div>
+        <div class="lens"><strong>{earned}/{available}</strong>Ownership</div>
+        <div class="lens"><strong>{earned}/{available}</strong>Lifecycle</div>
+        <div class="lens"><strong>{earned}/{available}</strong>Hygiene</div>
+      </div>
+
+      <h3>Seriousness by principle</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Principle</th><th>Seriousness</th><th>Strongest evidence</th></tr></thead>
+          <tbody>
+            <tr><td>P1 Obvious entry point</td><td><span class="status clear/watch/fix/na/pending">{Clear / Watch / Fix / N/A / Needs your call}</span></td><td>{evidence}</td></tr>
+            <tr><td>P2 Consistent naming</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td>P3 Smallest complete owner</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td>P4 Project-folder threshold</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td>P5 One source of truth</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td>P6 Lifecycle separation</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td>P7 Preserved history</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td>P8 Visible abandonment</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td>P9 Configuration discipline</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td>P10 Git hygiene</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>What works</h3>
+      <div class="strength-grid">
+        <article class="strength"><h3>{strength}</h3><p>{evidence worth preserving}</p></article>
+        <!-- Repeat for one to three specific strengths. -->
+      </div>
+
+      <!-- If a prior audit exists, add a Since last audit heading and distinguish repository changes from rubric or scoring changes. Generated reports are excluded from facts. -->
+    </section>
+
+    <section id="so-what">
+      <h2>So What: What This Affects</h2>
+      <p class="lede">{Two to four highest-cost consequences, most serious first. Say plainly when nothing is currently costly.}</p>
+      <ul class="consequences">
+        <li>{What may break, duplicate, become misleading, or get lost.}</li>
+        <!-- Repeat only for distinct consequences. -->
+      </ul>
+
+      <h3>Evidence behind the findings</h3>
+      <article class="finding">
+        <p><span class="status watch/fix/pending">{Watch / Fix / Needs your call}</span></p>
+        <h3>F{n} · {title}</h3>
+        <div class="finding-grid">
+          <div><strong>Current</strong>{P# Name. Repository paths and evidence. Never quote secret values.}</div>
+          <div><strong>Impact</strong>{Observable consequence in one or two sentences.}</div>
+          <div><strong>Proposal</strong>{Desired outcome that preserves documented constraints.}</div>
+          <div><strong>Safety</strong>{Exact reference searches, results, and risk if wrong or None found.}</div>
+        </div>
+      </article>
+      <!-- Repeat only for findings that affect the score, require a decision, or support a proposed change. -->
+    </section>
+
+    <section id="now-what">
+      <h2>Now What: Proposed Changes</h2>
+      <p class="notice"><strong>Proposed — not reviewed.</strong> This audit recommends changes; it does not approve or implement them.</p>
+
+      <h3>Before and After Proposed Changes</h3>
+      <p class="lede">{Show only affected areas. Omit changes that depend on unanswered intent.}</p>
+      <div class="tree-grid">
+        <article class="tree">
+          <h3>Current</h3>
+          <pre>{affected current tree
+with [KEEP], [FIX], [DUPLICATE],
+[AUTHORED], or [GENERATED] notes}</pre>
+        </article>
+        <article class="tree">
+          <h3>After Proposed Changes</h3>
+          <pre>{affected proposed tree
+with [OWNER], [ROUTER], [HUMAN],
+[MOVE], or [KEEP] notes}</pre>
+        </article>
+      </div>
+      <p class="limits"><strong>Tree key:</strong> OWNER canonical home · ROUTER agent instructions, pointers only · HUMAN explanatory README · MOVE reference check required · KEEP no change</p>
+
+      <h3>Ranked changes</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Order</th><th>Proposed change</th><th>Why this order</th><th>Safety check</th></tr></thead>
+          <tbody><tr><td>1</td><td>{change}</td><td>{leverage and reversibility}</td><td>{reference check}</td></tr></tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <h3>Needs your call</h3>
+        <p>{Only questions where intent decides whether a finding exists. Maximum three.}</p>
+      </div>
+
+      <div class="callout">
+        <h3>Choices for an implementation plan</h3>
+        <p>{Choices that do not change the audit score. Do not imply approval.}</p>
+      </div>
+
+      <h3>Coverage and security limits</h3>
+      <ul class="limits">
+        <li>{Unreadable, depth-pruned, opaque, or sampled paths.}</li>
+        <li>{Whether a dedicated secret-content scan ran. Filename checks alone do not prove absence.}</li>
+        <li>{Whether Git history, external schedules, symlinks, or deployment consumers were checked.}</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>Repo Structure Audit · {YYYY-MM-DD} · {report path}</footer>
+</body>
+</html>
