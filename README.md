@@ -9,16 +9,23 @@ lighter and reduce the need to remember every next step.
 
 [![MIT License](https://img.shields.io/badge/license-MIT-111111.svg)](LICENSE)
 [![Python 3](https://img.shields.io/badge/Python-3-3776AB.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-21%20passing-2E7D32.svg)](skills/repo-structure-audit/tests/)
+[![Tests](https://img.shields.io/badge/tests-27%20passing-2E7D32.svg)](skills/repo-structure-audit/tests/)
 
 </div>
 
-## Start here
+## Skills
 
 [**Repo Structure Audit**](skills/repo-structure-audit/). Use it
 when a repository feels hard to navigate, full of duplicates, or risky to reorganize.
 It reads your repo, scores it against ten principles, and proposes the safest
 cleanup. It never moves or deletes anything.
+
+[**Review Critically**](skills/review-critically/). Use it when a plan, document,
+design, or workflow needs a skeptical second opinion. It reconstructs the real
+problem, separates evidence from inference, checks relevant external guidance, and
+ranks the gaps that matter. It stays read-only unless you separately request changes.
+
+## The structure audit model
 
 To get value from the audit, you need its way of thinking. Here is the whole model in
 four ideas.
@@ -72,22 +79,24 @@ told to add `src/` and `tests/`.
 
 ## Install
 
-Clone this repository, then copy the skill into the tool you use:
+Clone this repository, then copy the skill you want into the tool you use:
 
 ```bash
 git clone https://github.com/kwoekel/woekel-works.git
 
-# Claude Code
-cp -R woekel-works/skills/repo-structure-audit ~/.claude/skills/
+# Claude Code (replace <skill-name> with repo-structure-audit or review-critically)
+cp -R woekel-works/skills/<skill-name> ~/.claude/skills/
 
 # Codex
-cp -R woekel-works/skills/repo-structure-audit ~/.codex/skills/
+cp -R woekel-works/skills/<skill-name> ~/.codex/skills/
 ```
 
-Then ask in plain words: "Audit this repository's structure."
+Then ask in plain words: "Audit this repository's structure" or "Review this
+plan critically."
 
-Python 3 and Git are the only requirements. The scanner uses the Python standard
-library; no package install is needed.
+Git is needed to clone the repository. Repo Structure Audit also needs Python 3;
+its scanner uses only the standard library. Review Critically has no extra runtime
+dependencies.
 
 ## Why I built it
 

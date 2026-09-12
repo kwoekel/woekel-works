@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Critically"
+  short_description: "Independent, evidence-led artifact review"
+  default_prompt: "Use $review-critically to review the attached files against the user’s real problem and current trusted external evidence."
