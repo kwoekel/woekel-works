@@ -82,23 +82,19 @@
       font-weight: 750;
     }
 
-    .hero-grid {
+    .score-line {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
-      gap: 1rem;
-      align-items: end;
-      margin-top: 1.4rem;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 1.2rem;
+      align-items: center;
+      margin-top: 1.5rem;
+      padding: 1.15rem 0;
+      border-block: 1px solid var(--line);
     }
 
-    .score {
-      padding: 1.25rem;
-      color: white;
-      background: var(--green);
-      border-radius: 14px;
-    }
-
-    .score strong { display: block; font-size: clamp(2.2rem, 7vw, 4rem); line-height: 1; }
-    .score span { display: block; margin-top: .35rem; color: #e4f0e9; }
+    .score-value { color: var(--green); font-size: clamp(2.8rem, 7vw, 5.2rem); font-weight: 850; line-height: .9; letter-spacing: -.055em; }
+    .score-copy strong { display: block; font-size: 1.15rem; }
+    .score-copy p { max-width: 62ch; color: var(--muted); }
 
     details.education {
       margin-top: 1rem;
@@ -126,18 +122,7 @@
     .education-body { padding: 0 1rem 1rem; color: var(--muted); }
     .education-body p:first-child { margin-top: 0; }
 
-    .principle-guide {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: .65rem;
-      margin-top: .75rem;
-    }
-
-    details.principle { margin: 0; }
-    details.principle > summary { min-height: 3.8rem; }
-
     .meta,
-    .lens-grid,
     .strength-grid,
     .tree-grid {
       display: grid;
@@ -146,12 +131,10 @@
     }
 
     .meta { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .lens-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .strength-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .tree-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
     .meta div,
-    .lens,
     .strength,
     .tree {
       padding: 1rem;
@@ -160,14 +143,26 @@
       border-radius: 11px;
     }
 
-    .meta strong,
-    .lens strong { display: block; color: var(--green); }
-    .lens strong { font-size: 1.65rem; }
+    .meta strong { display: block; color: var(--green); }
+
+    .lens-panel { margin-top: 1.35rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+    .lens-panel > h3 { margin-bottom: .2rem; }
+    .lens-list { margin: .75rem 0 0; padding: 0; list-style: none; border-bottom: 1px solid var(--line); }
+    .lens-row { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--line); }
+    .lens-score { color: var(--green); font-size: 1.45rem; font-weight: 850; }
+    .lens-copy > strong { font-size: 1.05rem; }
+    .lens-points { display: grid; gap: .2rem; margin: .45rem 0 0; padding-left: 1.2rem; color: var(--muted); }
+    .lens-points strong { color: var(--ink); }
 
     .table-wrap { margin-top: 1rem; overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; }
     th, td { padding: .8rem; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
     th { color: var(--muted); font-size: .85rem; }
+    .principle-name { display: block; font-weight: 750; }
+    .principle-question { display: block; max-width: 36ch; margin-top: .25rem; color: var(--muted); font-size: .9rem; }
+
+    .legend { display: flex; flex-wrap: wrap; gap: .4rem .7rem; margin: .8rem 0 0; color: var(--muted); font-size: .88rem; }
+    .legend span { display: inline-flex; align-items: center; gap: .3rem; }
 
     .status {
       display: inline-block;
@@ -218,6 +213,9 @@
       white-space: pre;
     }
 
+    .tree { min-width: 0; }
+    .tree-key { margin-top: .8rem; color: var(--muted); font-size: .9rem; }
+
     .callout { margin-top: 1rem; padding: 1rem; border-radius: 11px; background: var(--blue-soft); }
     .limits { color: var(--muted); }
 
@@ -225,13 +223,24 @@
 
     @media (max-width: 760px) {
       header { padding-top: 2.25rem; }
-      .hero-grid,
-      .meta,
-      .lens-grid,
-      .strength-grid,
+      .score-line,
       .tree-grid,
-      .principle-guide,
       .finding-grid { grid-template-columns: 1fr; }
+      .score-line { gap: .55rem; }
+      .lens-row { grid-template-columns: 1fr; gap: .2rem; }
+    }
+
+    @media (max-width: 620px) {
+      .meta,
+      .strength-grid { grid-template-columns: 1fr; }
+      .verdict-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      .verdict-table,
+      .verdict-table tbody,
+      .verdict-table tr,
+      .verdict-table td { display: block; width: 100%; }
+      .verdict-table tr { padding: .9rem 0; border-top: 1px solid var(--line); }
+      .verdict-table td { padding: .2rem 0; border: 0; }
+      .verdict-table td:nth-child(3)::before { content: "Evidence"; display: block; margin-top: .35rem; color: var(--muted); font-size: .75rem; font-weight: 750; }
     }
 
     @media print {
@@ -248,14 +257,11 @@
     <h1>{repo name}</h1>
     <p class="badge">Read-only review — nothing changed</p>
     <p class="lede">{One sentence: overall state, highest-cost problem, and safest first move.}</p>
-    <div class="hero-grid">
-      <div>
-        <p class="eyebrow">Audit result</p>
-        <p>{No pending checks: final score and band. Pending checks: assessed points, assessed percent, full-score range, and named pending checks. Never show an ordinary score out of 100 while checks remain pending.}</p>
-      </div>
-      <div class="score">
-        <strong>{score or assessed percent}</strong>
-        <span>{band or full-score range}</span>
+    <div class="score-line">
+      <div class="score-value">{score or assessed percent}</div>
+      <div class="score-copy">
+        <strong>{band or full-score range}</strong>
+        <p>{No pending checks: what the score means. Pending checks: assessed points, assessed percent, full-score range, and named pending checks. Never show an ordinary score out of 100 while checks remain pending.}</p>
       </div>
     </div>
     <details class="education">
@@ -278,81 +284,35 @@
         <div><strong>N/A</strong>{checks and reason, or None}</div>
       </div>
 
-      <div class="lens-grid" aria-label="Score by lens">
-        <div class="lens"><strong>{earned}/{available}</strong>Navigability</div>
-        <div class="lens"><strong>{earned}/{available}</strong>Ownership</div>
-        <div class="lens"><strong>{earned}/{available}</strong>Lifecycle</div>
-        <div class="lens"><strong>{earned}/{available}</strong>Hygiene</div>
+      <div class="lens-panel" aria-labelledby="four-lenses-title">
+        <h3 id="four-lenses-title">The four lenses</h3>
+        <p class="lede">Each lens shows the strongest signal to preserve and the main reason points were lost.</p>
+        <ul class="lens-list">
+          <li class="lens-row"><div class="lens-score">{earned}/{available}</div><div class="lens-copy"><strong>Navigability</strong><ul class="lens-points"><li><strong>Working:</strong> {strongest navigability signal}</li><li><strong>Costs points:</strong> {largest navigability friction, or None found}</li></ul></div></li>
+          <li class="lens-row"><div class="lens-score">{earned}/{available}</div><div class="lens-copy"><strong>Ownership</strong><ul class="lens-points"><li><strong>Working:</strong> {strongest ownership signal}</li><li><strong>Costs points:</strong> {largest ownership friction, or None found}</li></ul></div></li>
+          <li class="lens-row"><div class="lens-score">{earned}/{available}</div><div class="lens-copy"><strong>Lifecycle</strong><ul class="lens-points"><li><strong>Working:</strong> {strongest lifecycle signal}</li><li><strong>Costs points:</strong> {largest lifecycle friction, or None found}</li></ul></div></li>
+          <li class="lens-row"><div class="lens-score">{earned}/{available}</div><div class="lens-copy"><strong>Hygiene</strong><ul class="lens-points"><li><strong>Working:</strong> {strongest hygiene signal}</li><li><strong>Costs points:</strong> {largest hygiene friction, or None found}</li></ul></div></li>
+        </ul>
       </div>
 
       <h3>Seriousness by principle</h3>
-      <details class="education">
-        <summary>What the seriousness labels mean</summary>
-        <div class="education-body">
-          <p><strong>Clear</strong> means the review found no supported problem. <strong>Watch</strong> marks friction or a developing risk. <strong>Fix</strong> marks a concrete, evidenced problem. <strong>Needs your call</strong> means intent changes the verdict. <strong>N/A</strong> means the check does not fit this repository.</p>
-        </div>
-      </details>
+      <p class="legend"><span><b>Clear</b> no supported problem</span><span><b>Watch</b> friction or developing risk</span><span><b>Fix</b> evidenced problem</span><span><b>Needs your call</b> intent changes the verdict</span></p>
       <div class="table-wrap">
-        <table>
+        <table class="verdict-table">
           <thead><tr><th>Principle</th><th>Seriousness</th><th>Strongest evidence</th></tr></thead>
           <tbody>
-            <tr><td>P1 Obvious entry point</td><td><span class="status clear/watch/fix/na/pending">{Clear / Watch / Fix / N/A / Needs your call}</span></td><td>{evidence}</td></tr>
-            <tr><td>P2 Consistent naming</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
-            <tr><td>P3 Smallest complete owner</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
-            <tr><td>P4 Project-folder threshold</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
-            <tr><td>P5 One source of truth</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
-            <tr><td>P6 Lifecycle separation</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
-            <tr><td>P7 Preserved history</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
-            <tr><td>P8 Visible abandonment</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
-            <tr><td>P9 Configuration discipline</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
-            <tr><td>P10 Git hygiene</td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td><span class="principle-name">P1 · Obvious entry point</span><span class="principle-question">Can a new person and an agent reach the right starting points without searching?</span></td><td><span class="status clear/watch/fix/na/pending">{Clear / Watch / Fix / N/A / Needs your call}</span></td><td>{evidence}</td></tr>
+            <tr><td><span class="principle-name">P2 · Consistent naming</span><span class="principle-question">Can someone predict what neighboring items are called?</span></td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td><span class="principle-name">P3 · Smallest complete owner</span><span class="principle-question">Does each subject live in the smallest area that completely owns it?</span></td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td><span class="principle-name">P4 · Project-folder threshold</span><span class="principle-question">Does each project boundary represent a real outcome and lifecycle?</span></td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td><span class="principle-name">P5 · One source of truth</span><span class="principle-question">Is each maintained fact or implementation authoritative in one place?</span></td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td><span class="principle-name">P6 · Lifecycle separation</span><span class="principle-question">Can readers distinguish authored, generated, historical, and disposable material?</span></td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td><span class="principle-name">P7 · Preserved history</span><span class="principle-question">Can important decisions and superseded work be recovered without looking current?</span></td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td><span class="principle-name">P8 · Visible abandonment</span><span class="principle-question">Does anything no longer maintained say so clearly?</span></td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td><span class="principle-name">P9 · Configuration discipline</span><span class="principle-question">Are behavioral values machine-readable, consistent, and safely stored?</span></td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
+            <tr><td><span class="principle-name">P10 · Git hygiene</span><span class="principle-question">Does Git track intentional work instead of accidental machine output?</span></td><td><span class="status {class}">{status}</span></td><td>{evidence}</td></tr>
           </tbody>
         </table>
-      </div>
-
-      <h3>Learn the ten principles</h3>
-      <p class="lede">Open any principle for the question it asks. These are repository outcomes, not required folder names.</p>
-      <div class="principle-guide">
-        <details class="education principle">
-          <summary>P1 · Obvious entry point</summary>
-          <div class="education-body"><p>Can a new person understand the repository, and can an agent reach governing sources and active work, without searching? A confident but wrong route is often more costly than a missing one.</p></div>
-        </details>
-        <details class="education principle">
-          <summary>P2 · Consistent naming</summary>
-          <div class="education-body"><p>Can someone predict what neighboring items are called? The goal is consistency inside each ownership boundary, not one naming style forced across unrelated tools.</p></div>
-        </details>
-        <details class="education principle">
-          <summary>P3 · Smallest complete owner</summary>
-          <div class="education-body"><p>Does each fact or artifact live in the smallest area that completely owns it? Repository-wide material belongs at the root; project-specific material belongs with that project.</p></div>
-        </details>
-        <details class="education principle">
-          <summary>P4 · Project-folder threshold</summary>
-          <div class="education-body"><p>Has a body of work earned its own identity and lifecycle, or is it empty scaffolding? A project boundary should reflect a real outcome, not a preferred folder checklist.</p></div>
-        </details>
-        <details class="education principle">
-          <summary>P5 · One source of truth</summary>
-          <div class="education-body"><p>Is each maintained fact or implementation authoritative in one place? Other locations should point to that owner or clearly say they are generated copies.</p></div>
-        </details>
-        <details class="education principle">
-          <summary>P6 · Lifecycle separation</summary>
-          <div class="education-body"><p>Can a reader tell authored work from generated output, history, and disposable material? The audit follows the repository's own lifecycle vocabulary instead of prescribing a universal temporary folder.</p></div>
-        </details>
-        <details class="education principle">
-          <summary>P7 · Preserved history</summary>
-          <div class="education-body"><p>Can important decisions and superseded work still be found without looking current? Git may be enough for a small project; higher-cost decisions may need an explicit record.</p></div>
-        </details>
-        <details class="education principle">
-          <summary>P8 · Visible abandonment</summary>
-          <div class="education-body"><p>Does anything no longer maintained say so clearly? Age alone is not abandonment; stated lifecycle, content dates, and history carry more weight than modification times.</p></div>
-        </details>
-        <details class="education principle">
-          <summary>P9 · Configuration discipline</summary>
-          <div class="education-body"><p>Are values that control behavior machine-readable, consistent, and free of exposed credentials? Prose may explain configuration, but automation should not have to scrape it for settings.</p></div>
-        </details>
-        <details class="education principle">
-          <summary>P10 · Git hygiene</summary>
-          <div class="education-body"><p>Does version control hold authored decisions and intentional products instead of accidental machine output? Presence is not enough evidence; ignore rules and tracked-file state must be checked.</p></div>
-        </details>
       </div>
 
       <h3>What works</h3>
@@ -413,10 +373,7 @@ with [OWNER], [ROUTER], [HUMAN],
 [MOVE], or [KEEP] notes}</pre>
         </article>
       </div>
-      <details class="education">
-        <summary>How to read the tree labels</summary>
-        <div class="education-body"><p><strong>OWNER</strong> is the canonical home. <strong>ROUTER</strong> means agent instructions that point to owners. <strong>HUMAN</strong> is explanatory README content. <strong>MOVE</strong> requires a reference check. <strong>KEEP</strong> means no change.</p></div>
-      </details>
+      <p class="tree-key"><strong>Tree key:</strong> OWNER canonical home · ROUTER agent instructions that point · HUMAN explanatory README · MOVE reference check required · KEEP no change</p>
 
       <h3>Ranked changes</h3>
       <div class="table-wrap">

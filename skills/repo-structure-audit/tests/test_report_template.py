@@ -64,18 +64,21 @@ class ReportTemplateTests(unittest.TestCase):
         self.assertIn("Never quote secret values", self.source)
 
     def test_educational_toggles_cover_the_method_and_safety(self):
-        self.assertEqual(self.parser.details, 15)
+        self.assertEqual(self.parser.details, 3)
         self.assertEqual(self.parser.summaries, self.parser.details)
         for label in (
             "How this score works",
-            "What the seriousness labels mean",
-            "P1 · Obvious entry point",
-            "P10 · Git hygiene",
             "Show reference checks and risk",
             "Why the audit stops at a proposal",
-            "How to read the tree labels",
         ):
             self.assertIn(label, self.source)
+
+    def test_four_lenses_use_bullets_and_principles_teach_in_context(self):
+        self.assertIn('class="lens-list"', self.source)
+        self.assertEqual(self.source.count('class="lens-points"'), 4)
+        self.assertEqual(self.source.count('class="principle-question"'), 10)
+        self.assertNotIn("Learn the ten principles", self.source)
+        self.assertNotIn('class="education principle"', self.source)
 
     def test_template_supports_narrow_and_print_layouts(self):
         self.assertIn("min-width: 0", self.source)
