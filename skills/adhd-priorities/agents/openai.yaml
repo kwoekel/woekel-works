@@ -1,0 +1,4 @@
+interface:
+  display_name: "ADHD Priorities"
+  short_description: "Sort a task list without mistaking activation for importance"
+  default_prompt: "Use $adhd-priorities to rank this task list and tell me what to start now."
