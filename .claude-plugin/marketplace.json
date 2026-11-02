@@ -1,0 +1,12 @@
+{
+  "name": "woekel-works",
+  "owner": { "name": "Kierra Woekel" },
+  "description": "Claude Code mods from woekel works",
+  "plugins": [
+    {
+      "name": "share-shield",
+      "source": "./mods/share-shield",
+      "description": "Blurs secrets and personal info in the chat while your screen is being shared or recorded"
+    }
+  ]
+}

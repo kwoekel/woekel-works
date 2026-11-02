@@ -25,6 +25,17 @@ design, or workflow needs a skeptical second opinion. It reconstructs the real
 problem, separates evidence from inference, checks relevant external guidance, and
 ranks the gaps that matter. It stays read-only unless you separately request changes.
 
+## Mods
+
+[**Share Shield**](mods/share-shield/). Use it when you share your screen or
+record it with Claude Code open. It notices Zoom sharing, macOS screen recording
+and OBS, then blurs keys, passwords, emails, phone numbers and card numbers in
+the chat until sharing ends.
+
+```
+/plugin install share-shield --marketplace kwoekel/woekel-works
+```
+
 ## The structure audit model
 
 To get value from the audit, you need its way of thinking. Here is the whole model in

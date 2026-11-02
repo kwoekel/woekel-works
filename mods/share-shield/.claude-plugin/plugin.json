@@ -1,0 +1,18 @@
+{
+  "name": "share-shield",
+  "version": "0.1.0",
+  "description": "Blurs secrets and personal info in the chat while your screen is being shared or recorded",
+  "author": {
+    "name": "Kierra Woekel"
+  },
+  "license": "MIT",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "extraProcesses": {
+      "type": "string",
+      "title": "Extra capture processes",
+      "description": "Comma-separated process names that also count as screen sharing",
+      "default": ""
+    }
+  }
+}
