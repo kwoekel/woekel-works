@@ -1,6 +1,0 @@
-{
-  "name": "court-skills",
-  "version": "1.0.0",
-  "description": "Five skills for a custody or co-parenting case: incident log, timeline builder, narrative writer, co-parent reply helper, and attorney packet. Everything is saved as plain files in a court folder. Drafts only, never sends.",
-  "keywords": ["custody", "co-parenting", "evidence", "timeline", "family-court"]
-}
