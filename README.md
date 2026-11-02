@@ -25,6 +25,25 @@ design, or workflow needs a skeptical second opinion. It reconstructs the real
 problem, separates evidence from inference, checks relevant external guidance, and
 ranks the gaps that matter. It stays read-only unless you separately request changes.
 
+**Court and co-parenting skills.** Five skills for a parent in a custody or
+co-parenting case. Everything is saved as plain files in a `court` folder, drafts only,
+and nothing is ever sent.
+
+- [**Incident Log**](skills/incident-log/). Logs an incident or a message from the other
+  parent as a dated evidence entry.
+- [**Timeline Builder**](skills/timeline-builder/). Builds one sourced timeline, tags what
+  matters, and lists contradictions and gaps.
+- [**Narrative Writer**](skills/narrative-writer/). Drafts a calm, child-focused, cited
+  narrative for a custody evaluator or attorney.
+- [**Co-Parent Reply**](skills/co-parent-reply/). Drafts brief, firm replies to the other
+  parent using the BIFF method.
+- [**Attorney Packet**](skills/attorney-packet/). Prepares one-page attorney updates, keeps
+  an attorney log, and drafts motion-prep packets.
+
+Adapted with credit from [Case Forge](https://github.com/CaseForgeHq/family-court-strategist)
+(MIT) and Anthropic's [claude-for-legal](https://github.com/anthropics/claude-for-legal)
+chronology skill (Apache-2.0). Organized drafts for an attorney to review, not legal advice.
+
 ## Mods
 
 [**Share Shield**](mods/share-shield/). Use it when you share your screen or
@@ -95,7 +114,7 @@ Clone this repository, then copy the skill you want into the tool you use:
 ```bash
 git clone https://github.com/kwoekel/woekel-works.git
 
-# Claude Code (replace <skill-name> with repo-structure-audit or review-critically)
+# Claude Code (replace <skill-name> with any folder name in skills/)
 cp -R woekel-works/skills/<skill-name> ~/.claude/skills/
 
 # Codex
