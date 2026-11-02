@@ -1,12 +1,19 @@
 {
   "name": "woekel-works",
-  "owner": { "name": "Kierra Woekel" },
-  "description": "Claude Code mods from woekel works",
+  "owner": {
+    "name": "Kierra Woekel"
+  },
+  "description": "Claude Code mods and plugins from woekel works",
   "plugins": [
     {
       "name": "share-shield",
       "source": "./mods/share-shield",
       "description": "Blurs secrets and personal info in the chat while your screen is being shared or recorded"
+    },
+    {
+      "name": "court-skills",
+      "source": "./plugins/court-skills",
+      "description": "Five skills for a custody or co-parenting case: incident log, timeline, narrative, co-parent replies, and attorney packets"
     }
   ]
 }

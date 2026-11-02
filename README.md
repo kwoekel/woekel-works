@@ -25,6 +25,17 @@ design, or workflow needs a skeptical second opinion. It reconstructs the real
 problem, separates evidence from inference, checks relevant external guidance, and
 ranks the gaps that matter. It stays read-only unless you separately request changes.
 
+## Plugins
+
+[**Court Skills**](plugins/court-skills/). Use it when a parent in a custody or
+co-parenting case needs to keep a clear record. Five skills log incidents, build a
+sourced timeline, draft a calm narrative for an evaluator, draft brief replies to the
+other parent, and prepare attorney updates. Drafts only. It never sends anything.
+
+```
+/plugin install court-skills --marketplace kwoekel/woekel-works
+```
+
 ## Mods
 
 [**Share Shield**](mods/share-shield/). Use it when you share your screen or
