@@ -19,7 +19,7 @@ Makes every attorney conversation shorter, cheaper, and more useful, and keeps a
 
 # Update for [attorney] — YYYY-MM-DD
 ## Since our last contact (YYYY-MM-DD)
-- [3–6 bullets, each with a timeline ID]
+- [3–6 bullets, each ending with its timeline ID in brackets]
 ## Key incidents (🔴)
 - [date] [one line] [T-### / EVT-###]
 ## Upcoming dates and deadlines
@@ -50,15 +50,29 @@ Also keep a costs table in `court/attorney/costs.md`: fee agreement terms, each 
 
 1. Ask what the motion is about and the period it covers. Don't choose legal arguments; that's the attorney's job.
 2. Draft `court/attorney/motion-prep-YYYY-MM-DD.md`:
-   - **Statement of facts:** chronological prose built from relevant 🔴 and 🟡 timeline entries, each paragraph cited.
+   - **Statement of facts,** under a `## Statement of facts` heading: chronological prose built from relevant 🔴 and 🟡 timeline entries, each paragraph ending with its sources in brackets.
    - **Exhibit list:** numbered, with description, date, and file location for every cited source.
    - **Gaps:** facts the motion seems to need that aren't documented.
    - **Questions for the attorney.**
 3. Mark legal points `[verify with attorney]`. Never cite statutes or cases from memory.
 
+## Before calling an update or motion-prep packet ready
+
+1. **Run Proof Check** on the saved file. Don't call it ready until it says **Ready for attorney review**. Until then, call it a draft and list what's open.
+2. **Offer export to Word or PDF,** using whichever document tool the app has. If there is none, say so. Put the disclaimer at the top, then add two appendices (the one-page limit doesn't count them):
+   - **Source index:** every cited ID and source, with date, what it is, and where it lives.
+   - **Timeline appendix:** the cited rows from `court/timeline.md`, unchanged.
+
+   The Markdown stays the master. Make changes there and export again. If the user wants an export before Proof Check passes, mark its first page `Not yet proof-checked`.
+
+## Project tracker
+
+If a project tracker exists (`PROJECT.md` with Sections, Sources needed, Sources linked, Open questions, Last session), open from it when resuming and update it at the end of each session. Don't create one unasked.
+
 ## Rules
 
 - Never invent facts, dates, or legal rules.
+- Keep `> Organized draft for your attorney to review, not legal advice.` at the top of every file this skill writes, including the log, costs, and exports.
 - Never contact the attorney or send anything. Drafts only.
 - Keep it local.
 

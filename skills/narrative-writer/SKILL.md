@@ -26,6 +26,16 @@ Turns the timeline into a calm, readable account that an evaluator or attorney c
 6. **Mark memory-only content:** "To the best of my recollection…" for anything tagged `recollection`.
 7. **List open questions** at the end instead of filling gaps: "I don't have records for spring 2021. Do you have texts, emails, or someone who remembers?"
 8. Save to `court/narratives/YYYY-MM-DD-[audience]-[period].md` and show the user a short summary.
+9. **Run Proof Check** on the saved draft. Don't call it ready until it says **Ready for attorney review**. Until then, call it a draft and list what's open.
+10. **Offer export to Word or PDF,** using whichever document tool the app has. If there is none, say so. Put the disclaimer at the top, then add two appendices:
+    - **Source index:** every cited ID and source, with date, what it is, and where it lives.
+    - **Timeline appendix:** the cited rows from `court/timeline.md`, unchanged.
+
+    The Markdown stays the master. Make changes there and export again. If the user wants an export before Proof Check passes, mark its first page `Not yet proof-checked`.
+
+## Project tracker
+
+If a project tracker exists (`PROJECT.md` with Sections, Sources needed, Sources linked, Open questions, Last session), open from it when resuming and update it at the end of each session. Don't create one unasked.
 
 ## Tone rules
 
