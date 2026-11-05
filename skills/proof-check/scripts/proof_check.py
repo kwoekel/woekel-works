@@ -10,7 +10,7 @@ import calendar
 import re
 import sys
 from dataclasses import dataclass, field
-from pathlib import Path
+from pathlib import Path, PurePosixPath, PureWindowsPath
 from urllib.parse import unquote
 
 
@@ -211,14 +211,30 @@ def counts_as_citation(citation):
     return False
 
 
+def records_root(court):
+    """The folder holding the records: the court folder's parent, or a nearby ancestor with SOURCES."""
+    court = court.resolve()
+    for folder in list(court.parents)[:4]:
+        if (folder / "SOURCES").is_dir():
+            return folder
+    return court.parent
+
+
 def file_exists(token, near, court):
-    path = Path(unquote(token)).expanduser()
-    if path.is_absolute():
-        return path.exists()
-    candidates = [near / path, court / path, court.parent / path]
+    """True only for a file inside the records. Other locations count as missing and are never touched."""
+    text = unquote(token).strip()
+    if text.startswith(("~", "/", "\\")) or PureWindowsPath(text).anchor or PurePosixPath(text).is_absolute():
+        return False
+    path = Path(text)
+    root = records_root(court)
+    candidates = [near / path, court / path, court.parent / path, root / path]
     if path.parts and path.parts[0].lower() == "court":
         candidates.append(court.joinpath(*path.parts[1:]))
-    return any(candidate.exists() for candidate in candidates)
+    for candidate in candidates:
+        resolved = candidate.resolve()
+        if resolved.is_relative_to(root) and resolved.is_file():
+            return True
+    return False
 
 
 def split_row(line):

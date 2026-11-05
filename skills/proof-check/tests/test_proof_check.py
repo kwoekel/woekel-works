@@ -55,6 +55,27 @@ class ProofCheckTests(unittest.TestCase):
         self.write_timeline(GOOD_ROWS)
         self.write_entry("a.md", entry())
 
+    def test_sources_outside_the_records_count_as_missing(self):
+        outside = self.root.parent / "outside-the-records.pdf"
+        outside.write_text("x", encoding="utf-8")
+        self.addCleanup(outside.unlink)
+        for source in (str(outside), "~/notes.pdf", "../../outside-the-records.pdf",
+                       "//server/share/notes.pdf", "C:/notes.pdf", "exports"):
+            with self.subTest(source=source):
+                self.write_timeline(f"| T-001 | 2024-03-02 | exact | Event | 🔴 | yes | {source}.pdf |\n"
+                                    if source == "exports" else
+                                    f"| T-001 | 2024-03-02 | exact | Event | 🔴 | yes | {source} |\n")
+                result = self.check("# N\n\n## Events\n\nOn March 2, 2024 it happened. [T-001]\n")
+                self.assertEqual(result.returncode, 1, result.stdout)
+                self.assertIn("lead nowhere", result.stdout)
+
+    def test_brain_sources_folder_still_counts(self):
+        (self.root / "SOURCES").mkdir()
+        (self.root / "SOURCES" / "order.pdf").write_text("x", encoding="utf-8")
+        self.write_timeline("| T-001 | 2024-03-02 | exact | Event | 🔴 | yes | SOURCES/order.pdf |\n")
+        result = self.check("# N\n\n## Events\n\nOn March 2, 2024 it happened. [T-001]\n")
+        self.assertEqual(result.returncode, 0, result.stdout)
+
     def write_timeline(self, rows):
         (self.court / "timeline.md").write_text(TIMELINE_HEAD + rows, encoding="utf-8")
 
