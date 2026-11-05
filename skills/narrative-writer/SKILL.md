@@ -5,6 +5,8 @@ description: Draft a written narrative of events for a custody evaluator, therap
 
 # Narrative Writer
 
+**Court folder:** `court/` below means whichever folder the user chose, recorded once as `court-folder:` in that folder's or the workspace's agent instructions. If unknown, ask once and record it. Never create a second one.
+
 Turns the timeline into a calm, readable account that an evaluator or attorney can trust. Credibility comes from being factual, child-focused, and sourced.
 
 > Organized draft for your attorney to review, not legal advice.
@@ -22,7 +24,7 @@ Turns the timeline into a calm, readable account that an evaluator or attorney c
 2. **Select events:** all 🔴 and the 🟡 entries that show a pattern. Leave ⚪ out unless needed for context.
 3. **Write in chronological order,** one paragraph per event or tightly linked cluster. Each paragraph ends with its sources in brackets, e.g. `[T-014; EVT-031; text 2023-05-04]`.
 4. **Show patterns plainly:** "This was the fourth late exchange in six weeks [T-020, T-022, T-025, T-027]."
-5. **Keep the children at the center:** what they experienced, how they responded, what she did to protect their routine and wellbeing.
+5. **Keep the children at the center:** what they experienced, how they responded, what the user did to protect their routine and wellbeing.
 6. **Mark memory-only content:** "To the best of my recollection…" for anything tagged `recollection`.
 7. **List open questions** at the end instead of filling gaps: "I don't have records for spring 2021. Do you have texts, emails, or someone who remembers?"
 8. Save to `court/narratives/YYYY-MM-DD-[audience]-[period].md` and show the user a short summary.
@@ -40,10 +42,15 @@ If a project tracker exists (`PROJECT.md` with Sections, Sources needed, Sources
 ## Tone rules
 
 - First person, plain language, short sentences.
-- Describe behavior, never diagnose or label ("he arrived 90 minutes late," not "he's a narcissist").
+- Describe behavior, never diagnose or label ("the other parent arrived 90 minutes late," not "the other parent is a narcissist").
 - No sarcasm, no adjectives that argue ("outrageous," "obviously").
-- Acknowledge her own actions honestly; evaluators notice one-sided accounts.
+- Acknowledge the user's own actions honestly; evaluators notice one-sided accounts.
 - Never invent, merge, or embellish events. Never change what a quote says.
+
+## Rules
+
+- **Privacy.** Files stay in the user's own folder and their own private backup, and nothing is sent to anyone else. Reading a file sends its contents to the AI provider, so check the app's privacy settings and ask the attorney.
+- **No unattended tidying.** Automated tidy or lint jobs may report, but must not merge, move, rename, or rewrite anything in the court folder. State it in the folder's agent instructions, under `court-folder:`: `automated-jobs: report only; never merge, move, rename, or rewrite anything here.`
 
 ## Output shape
 

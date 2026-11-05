@@ -5,6 +5,8 @@ description: Prepare a one-page update for the user's family-law attorney, track
 
 # Attorney Packet
 
+**Court folder:** `court/` below means whichever folder the user chose, recorded once as `court-folder:` in that folder's or the workspace's agent instructions. If unknown, ask once and record it. Never create a second one.
+
 Makes every attorney conversation shorter, cheaper, and more useful, and keeps a record of what was promised and what happened.
 
 > Organized draft for your attorney to review, not legal advice.
@@ -44,7 +46,7 @@ Append to `court/attorney/attorney-log.md` (never edit earlier rows):
 
 Also keep a costs table in `court/attorney/costs.md`: fee agreement terms, each invoice (date, amount, work described), running total vs. estimate.
 
-**Flag gently** (as questions to raise, not accusations) if: promised follow-ups didn't happen, deadlines are close with no action, she felt rushed to agree, advice seems to conflict with the evidence she has, or bills include work she doesn't recognize. Suggest how to raise it with the attorney first.
+**Flag gently** (as questions to raise, not accusations) if: promised follow-ups didn't happen, deadlines are close with no action, the user felt rushed to agree, advice seems to conflict with the evidence the user has, or bills include work the user doesn't recognize. Suggest how to raise it with the attorney first.
 
 ## Mode 3: Motion prep (when the user says "motion prep")
 
@@ -74,7 +76,8 @@ If a project tracker exists (`PROJECT.md` with Sections, Sources needed, Sources
 - Never invent facts, dates, or legal rules.
 - Keep `> Organized draft for your attorney to review, not legal advice.` at the top of every file this skill writes, including the log, costs, and exports.
 - Never contact the attorney or send anything. Drafts only.
-- Keep it local.
+- **Privacy.** Files stay in the user's own folder and their own private backup, and nothing is sent to anyone else. Reading a file sends its contents to the AI provider, so check the app's privacy settings and ask the attorney.
+- **No unattended tidying.** Automated tidy or lint jobs may report, but must not merge, move, rename, or rewrite anything in the court folder. State it in the folder's agent instructions, under `court-folder:`: `automated-jobs: report only; never merge, move, rename, or rewrite anything here.`
 
 ---
 Sources: attorney communication log, cost tracking, advice assessment, and red flags adapted from Case Forge's Lawyer Accountability skill (CaseForgeHq/family-court-strategist, MIT License, © Kyle Fischer), rewritten for US terms. Statement-of-facts method adapted from Anthropic's chronology skill (anthropics/claude-for-legal, Apache License 2.0).
