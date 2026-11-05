@@ -25,10 +25,12 @@ design, or workflow needs a skeptical second opinion. It reconstructs the real
 problem, separates evidence from inference, checks relevant external guidance, and
 ranks the gaps that matter. It stays read-only unless you separately request changes.
 
-**Court and co-parenting skills.** Five skills for a parent in a custody or
-co-parenting case. Everything is saved as plain files in a `court` folder, drafts only,
-and nothing is ever sent.
+**Court and co-parenting skills.** Seven skills for a parent in a custody or
+co-parenting case. Everything is saved as plain files in one court folder you choose,
+drafts only, and nothing is ever sent.
 
+- [**Source Map**](skills/source-map/). Inventories every source of records, works through
+  them in batches that can resume, and says plainly what's missing.
 - [**Incident Log**](skills/incident-log/). Logs an incident or a message from the other
   parent as a dated evidence entry.
 - [**Timeline Builder**](skills/timeline-builder/). Builds one sourced timeline, tags what
@@ -39,6 +41,8 @@ and nothing is ever sent.
   parent using the BIFF method.
 - [**Attorney Packet**](skills/attorney-packet/). Prepares one-page attorney updates, keeps
   an attorney log, and drafts motion-prep packets.
+- [**Proof Check**](skills/proof-check/). Checks a narrative or packet for citations that lead
+  nowhere and claims the sources don't support, and lists them as questions.
 
 Adapted with credit from [Case Forge](https://github.com/CaseForgeHq/family-court-strategist)
 (MIT) and Anthropic's [claude-for-legal](https://github.com/anthropics/claude-for-legal)
@@ -121,11 +125,14 @@ cp -R woekel-works/skills/<skill-name> ~/.claude/skills/
 cp -R woekel-works/skills/<skill-name> ~/.codex/skills/
 ```
 
+Second-brain users: copy skills to `My-Second-Brain/.my-kit/skills/` instead, so they are
+backed up with the brain, then ask your AI to relink skills.
+
 Then ask in plain words: "Audit this repository's structure" or "Review this
 plan critically."
 
-Git is needed to clone the repository. Repo Structure Audit also needs Python 3;
-its scanner uses only the standard library. Review Critically has no extra runtime
+Git is needed to clone the repository. Repo Structure Audit and Proof Check also need
+Python 3; their scripts use only the standard library. Review Critically has no extra runtime
 dependencies.
 
 ## Why I built it
