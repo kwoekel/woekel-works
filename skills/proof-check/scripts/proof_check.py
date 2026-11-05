@@ -225,6 +225,8 @@ def file_exists(token, near, court):
     text = unquote(token).strip()
     if text.startswith(("~", "/", "\\")) or PureWindowsPath(text).anchor or PurePosixPath(text).is_absolute():
         return False
+    if ".." in PureWindowsPath(text).parts:
+        return False
     path = Path(text)
     root = records_root(court)
     candidates = [near / path, court / path, court.parent / path, root / path]
