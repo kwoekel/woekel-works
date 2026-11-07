@@ -59,6 +59,15 @@ the chat until sharing ends.
 /plugin install share-shield --marketplace kwoekel/woekel-works
 ```
 
+[**Tidy**](mods/tidy/). Use it when your prompt is a messy brain dump. Click Tidy
+above the prompt box, or type `/tidy`, and it rewrites the dump as clear
+instructions (goal, steps, things to keep in mind, finished when, still unclear)
+in the prompt box. You read it, edit it, then send it.
+
+```
+/plugin install tidy --marketplace kwoekel/woekel-works
+```
+
 ## The structure audit model
 
 To get value from the audit, you need its way of thinking. Here is the whole model in

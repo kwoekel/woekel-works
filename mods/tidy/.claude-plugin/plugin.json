@@ -1,0 +1,10 @@
+{
+  "name": "tidy",
+  "version": "0.3.0",
+  "description": "Click Tidy or run /tidy to turn a messy brain dump into clear instructions you can read, edit and send",
+  "author": {
+    "name": "Kierra Woekel"
+  },
+  "license": "MIT",
+  "types": "./types/index.d.ts"
+}
