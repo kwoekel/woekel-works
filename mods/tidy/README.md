@@ -5,20 +5,21 @@ prompt box. You read it, edit it, then send it.
 
 ## Install
 
-At the prompt of a Claude Code session:
+Paste these into the prompt box of a Claude Code session, one at a time (the first one is only needed once):
 
 ```
-/plugin install tidy --marketplace kwoekel/woekel-works
+/plugin marketplace add kwoekel/woekel-works
 ```
 
-From a shell:
-
-```bash
-claude plugin install tidy --marketplace kwoekel/woekel-works
 ```
+/plugin install tidy@woekel-works
+```
+
+Claude Code opens the plugin panel on the mod. Pick a scope, confirm, and
+type `/reload-plugins` if it asks. Full steps: [Mods](../README.md).
 
 Mods need Claude Code 2.1.287 or newer (2.1.286 in the desktop app). A mod runs
-with your permissions, so read this one before you install it.
+with your permissions, so read it before you install it.
 
 ## Use it
 

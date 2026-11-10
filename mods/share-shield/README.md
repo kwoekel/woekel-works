@@ -6,20 +6,21 @@ and off when it ends.
 
 ## Install
 
-At the prompt of a Claude Code terminal session:
+Paste these into the prompt box of a Claude Code session, one at a time (the first one is only needed once):
 
 ```
-/plugin install share-shield --marketplace kwoekel/woekel-works
+/plugin marketplace add kwoekel/woekel-works
 ```
 
-From a shell:
-
-```bash
-claude plugin install share-shield --marketplace kwoekel/woekel-works
+```
+/plugin install share-shield@woekel-works
 ```
 
-In the desktop app: click + next to the prompt box, then Plugins, Add
-marketplace with `kwoekel/woekel-works`, then Add plugin.
+Claude Code opens the plugin panel on the mod. Pick a scope, confirm, and
+type `/reload-plugins` if it asks. Full steps: [Mods](../README.md).
+
+Mods need Claude Code 2.1.287 or newer (2.1.286 in the desktop app). A mod runs
+with your permissions, so read it before you install it.
 
 ## What it detects (macOS)
 

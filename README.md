@@ -50,23 +50,17 @@ chronology skill (Apache-2.0). Organized drafts for an attorney to review, not l
 
 ## Mods
 
+Mods change how Claude Code looks and behaves. [**Copy-paste install steps for each one are in the Mods folder.**](mods/)
+
 [**Share Shield**](mods/share-shield/). Use it when you share your screen or
 record it with Claude Code open. It notices Zoom sharing, macOS screen recording
 and OBS, then blurs keys, passwords, emails, phone numbers and card numbers in
 the chat until sharing ends.
 
-```
-/plugin install share-shield --marketplace kwoekel/woekel-works
-```
-
 [**Tidy**](mods/tidy/). Use it when your prompt is a messy brain dump. Click Tidy
 above the prompt box, or type `/tidy`, and it rewrites the dump as clear
 instructions (goal, steps, things to keep in mind, finished when, still unclear)
 in the prompt box. You read it, edit it, then send it.
-
-```
-/plugin install tidy --marketplace kwoekel/woekel-works
-```
 
 ## The structure audit model
 
